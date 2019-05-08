@@ -1,7 +1,7 @@
 import time
-from library_crawler.writeCSV import writeDictionaryListToCSVfile
-from library_crawler.DATA import *
-from library_crawler.crawler import Crawler
+from cau_library_crawler.library_crawler.writeCSV import writeDictionaryListToCSVfile
+from cau_library_crawler.library_crawler.DATA import *
+from cau_library_crawler.library_crawler.crawler import Crawler
 
 START_DATE = "2018-07-01"
 END_DATE = "2018-12-31"
