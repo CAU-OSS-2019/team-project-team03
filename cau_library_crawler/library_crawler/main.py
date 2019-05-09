@@ -1,12 +1,11 @@
 import time
+import calendar
 from cau_library_crawler.library_crawler.writeCSV import writeDictionaryListToCSVfile
 from cau_library_crawler.library_crawler.DATA import *
 from cau_library_crawler.library_crawler.crawler import Crawler
 
-START_DATE = "2018-07-01"
-END_DATE = "2018-12-31"
 
-if __name__ == '__main__':
+def main(START_DATE, END_DATE):
     myCrawler = Crawler()
     myCrawler.get_url("https://library.cau.ac.kr/#/new/si")
     time.sleep(5)
@@ -25,10 +24,22 @@ if __name__ == '__main__':
 
     #책 목록 뽑아오기
     booklist = myCrawler.getBookData()
+    myCrawler.close()
     csv_columns = ['title', 'writer', 'publication', 'callno', 'href']
 
     #책 목록 csv 파일로 저장하기
     filename = "../data/BOOKLIST_"+START_DATE+"_"+END_DATE+".csv"
     writeDictionaryListToCSVfile(filename,booklist, csv_columns)
 
+
+if __name__ == '__main__':
+    for year in (2015, 2017):
+        for i in range(0,4):
+            s_month = 1 + i*3
+            e_month = 3 + i*3
+            e_day = calendar.monthrange(year,e_month)[1]
+            START_DATE = str(year)+"-"+f"{s_month:02}-"+"01"
+            END_DATE = str(year) + "-" + f"{e_month:02}-" + f"{e_day}"
+            print(END_DATE)
+            main(START_DATE, END_DATE)
 

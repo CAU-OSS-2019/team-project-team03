@@ -104,4 +104,7 @@ class Crawler:
             #현재는 3초 쉬게 만들어놨는데 딱히 이상 없었음, 더 줄이면 좋겠지만 안정성을 위해서 길게 잡음
             time.sleep(DELAY_PER_NEXT)
         return booklist
+    # 셀레니움 종료
+    def close(self) -> object:
+        self.driver.close()
 
