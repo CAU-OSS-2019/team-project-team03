@@ -31,9 +31,10 @@ def main(START_DATE, END_DATE):
     filename = "../data/BOOKLIST_"+START_DATE+"_"+END_DATE+".csv"
     writeDictionaryListToCSVfile(filename,booklist, csv_columns)
 
-
+main("2019-01-01","2019-03-01")
+'''
 if __name__ == '__main__':
-    for year in (2015, 2017):
+    for year in range(2010, 2019):
         for i in range(0,4):
             s_month = 1 + i*3
             e_month = 3 + i*3
@@ -42,4 +43,5 @@ if __name__ == '__main__':
             END_DATE = str(year) + "-" + f"{e_month:02}-" + f"{e_day}"
             print(END_DATE)
             main(START_DATE, END_DATE)
+'''
 

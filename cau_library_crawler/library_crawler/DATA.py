@@ -1,6 +1,6 @@
-DELAY = 10  # selenium 이 기다려주는 시간
+DELAY = 3  # selenium 이 기다려주는 시간
 LENGTH = 20 # 한 번에 검색되는 책의 갯수
-DELAY_PER_NEXT = 3 # 다음버튼 누르고 페이지 바뀔 때 기다려주는 시간
+DELAY_PER_NEXT = 4 # 다음버튼 누르고 페이지 바뀔 때 기다려주는 시간
 
 
 

@@ -52,6 +52,7 @@ class Crawler:
             print(i+1)
             for i in range(1, times2 + 1):
                 # 책 제목 가져오기
+
                 try :
                     title = self.driver.find_element_by_xpath(
                         "/html/body/div[1]/div[3]/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[2]/div[4]/div[" + str(
