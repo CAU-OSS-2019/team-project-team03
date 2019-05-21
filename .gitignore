@@ -1,9 +1,0 @@
-# ignore .idea folder
-.idea/
-
-# ignore chromedriver_win32
-chromedriver_win32/
-
-# ignore venv
-vevn/
-
