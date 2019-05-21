@@ -1,9 +1,8 @@
 # CAU Library crawler
 
------------------
 
 <div align="center">
-  <img src="https://cdn.pixabay.com/photo/2012/05/07/01/54/owl-47526_960_720.png">
+  <img src="https://cdn.pixabay.com/photo/2012/05/07/01/54/owl-47526_960_720.png" width="500" height="500">
 </div>
 
 #####  -- This prjoect with **OWL**(Opensource With Library) --
