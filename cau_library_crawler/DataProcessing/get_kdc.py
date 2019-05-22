@@ -27,10 +27,10 @@ for index in range(1, len(list_div)):
         if len(string) < 3:
             continue
         numbering = re.search(r'\d\d\d', string)
-        category = string[4:]
+        category = string[4:].replace(',', '')
         if len(category) < 1:
             category = "null"
-        result_list.append({'no': numbering.group(0) , 'category' : category})
+        result_list.append({'no': str(numbering.group(0)) , 'category' : category})
 
 
 wc.writeDictionaryListToCSVfile("kdc.csv", result_list, ["no", "category"])
