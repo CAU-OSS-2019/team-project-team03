@@ -36,7 +36,7 @@ public class Menu {
 			
 			menuInput = Integer.parseInt(tempInput);
 			
-			sc.close();
+			
 			
 		} while(0 >= menuInput || menuInput > 4);
 		
