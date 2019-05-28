@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -267,6 +268,7 @@ public class Preprocessing {
 	public void createCSV(List<UserData> userDataList, String fileNameInput) { //기본 filePath : C:\\, file이름 ; resultData.csv
 		
 		Path path = Paths.get("C:\\OSSRecommendSystem\\data"); //추가 경로 
+		final char UTF_8_WITHOUT_BOM = '\uFEFF';
 		
 		if(!Files.exists(path)) {
 			try {
@@ -278,7 +280,9 @@ public class Preprocessing {
 		
 		try {
 			
-			BufferedWriter fw = new BufferedWriter(new FileWriter(path+"//"+fileNameInput+".csv", false));
+			BufferedWriter fw = new BufferedWriter(new FileWriter(path+"//"+fileNameInput+".csv", StandardCharsets.UTF_8,/*Charset.forName("EUC-KR")*/ false));
+			
+			fw.write(UTF_8_WITHOUT_BOM);
 			
 			for(UserData userData : userDataList) {
 				
