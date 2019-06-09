@@ -1,5 +1,7 @@
 package com.github.cauoss2019.team03;
 
+import java.io.File;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -89,7 +91,7 @@ public class Main {
 		
 		System.out.println("로그인을 해주세요\n\n");
 		
-		
+	
 		while(!userID.equals(inputID) || !userPW.equals(inputPW)) {
 			
 			System.out.print("아이디 : ");
@@ -101,7 +103,7 @@ public class Main {
 			inputPW = sc.nextLine();
 			
 			if(userID.equals(inputID) && userPW.equals(inputPW)) {
-				sc.close();
+				
 			}
 			else {
 				//로그인 실패
@@ -110,47 +112,59 @@ public class Main {
 			
 		}
 		
-		menu = new Menu(inputID);
+		List<String> userPropensityList;
+	
 		
-		switch (menu.getMenuInput()) {
-		
-		case 1:
-			//사용자 성향 분석
-			//new UserPropensityAnalysis
+		while(true) {
 			
-			break;
+			menu = new Menu(inputID);
 			
-		case 2:
-			//사용자 대출 이력, 반납 이력 출력
-			//new CheckInOutnRecord
-			break;
+			switch (menu.getMenuInput()) {
 			
-		case 3:
-			//추천 알고리즘
-			//new Algorithm
-			break;
-			
-		case 4:
-			//시스템 종료
-			System.out.println("어플리케이션 종료");
-			
-			try {
+			case 1:
+				//사용자 성향 분석
+				//new UserPropensityAnalysis
+				new UserPropensityAnalysis(inputID);
 				
-				System.exit(0);
 				
-			} catch(SecurityException e) {
+				break;
 				
-				e.printStackTrace();
+			case 2:
 				
-			}
-			break;
+				new CheckInOutRecord(inputID);
+				//사용자 대출 이력, 반납 이력 출력
+				//new CheckInOutnRecord
+				break;
+				
+			case 3:
+				//추천 알고리즘
+				//new Algorithm
+				break;
+				
+			case 4:
+				//시스템 종료
+				System.out.println("어플리케이션 종료");
+				
+				try {
+					
+					System.exit(0);
+					
+				} catch(SecurityException e) {
+					
+					e.printStackTrace();
+					
+				}
+				break;
 
-		default:
-			
-			System.out.println("* 올바른 번호를 입력해주세요.\n");
-			
-			break;
+			default:
+				
+				System.out.println("* 올바른 번호를 입력해주세요.\n");
+				
+				break;
+			}
 		}
+		
+		
 
 	
 		
