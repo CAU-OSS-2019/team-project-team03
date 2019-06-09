@@ -1,3 +1,6 @@
+import org.apache.mahout.cf.taste.common.TasteException;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -134,9 +137,13 @@ public class Main {
                     break;
 
                 case 3:
-                    //추천 알고리즘
-                    //new Algorithm
-                    break;
+                    try {
+                        BookRecommender b = new BookRecommender(1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (TasteException e) {
+                        e.printStackTrace();
+                    }
 
                 case 4:
                     //시스템 종료
