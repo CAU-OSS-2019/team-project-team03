@@ -120,7 +120,7 @@ public class Main {
         List<String> userPropensityList;
         HashMap<Long, Book> bookHashMap = new ReadFile("BookList.csv", "euc-kr", "book").getBookHashMap();
 
-        DataModel model = new FileDataModel(new File("resultData_ver4.csv"));
+        DataModel model = new FileDataModel(new File("resultData_ver5.csv"));
 
         while(true) {
 
@@ -131,7 +131,8 @@ public class Main {
                 case 1:
                     //사용자 성향 분석
                     //new UserPreferenceAnalysis
-                    new UserPreferenceAnalysis(inputID, bookHashMap, model);
+                    UserPreferenceAnalysis upa = new UserPreferenceAnalysis(Long.parseLong(inputID), bookHashMap, model);
+                    upa.printUserData();
                     break;
 
                 case 2:
@@ -143,7 +144,7 @@ public class Main {
 
                 case 3:
                     try {
-                        new BookRecommender(model,bookHashMap, inputID, 10);
+                        new BookRecommender(model,bookHashMap, Long.parseLong(inputID), 10);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (TasteException e) {
