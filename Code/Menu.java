@@ -26,8 +26,9 @@ public class Menu {
             System.out.println("3. 추천 시스템 이용\n");
             System.out.println("4. 어플리케이션 종료\n");
 
-            System.out.println(">> ");
+            System.out.print(">> ");
 
+            @SuppressWarnings("resource")
             Scanner sc = new Scanner(System.in);
 
             tempInput = sc.next();
@@ -48,6 +49,5 @@ public class Menu {
     public void setMenuInput(int menuInput) {
         this.menuInput = menuInput;
     }
-
 
 }

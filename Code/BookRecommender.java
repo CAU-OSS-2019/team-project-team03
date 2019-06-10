@@ -29,7 +29,8 @@ import java.util.List;
 public class BookRecommender {
 
     private int user_id;
-    public BookRecommender(int user_id) throws IOException, TasteException {
+
+    public BookRecommender(int user_id, int howMany) throws IOException, TasteException {
 
         ArrayList<Integer> bookIDList = new ArrayList<Integer>();
 
@@ -39,7 +40,7 @@ public class BookRecommender {
         UserNeighborhood neighborhood = new NearestNUserNeighborhood(10, similarity, model);
         UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 
-        List<RecommendedItem> recommendations = recommender.recommend(user_id, 10);
+        List<RecommendedItem> recommendations = recommender.recommend(user_id, howMany);
         for (RecommendedItem recommendation : recommendations) {
             bookIDList.add((int) recommendation.getItemID());
         }

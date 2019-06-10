@@ -1,12 +1,13 @@
 import org.apache.mahout.cf.taste.common.TasteException;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    private final static String userID = "root";
+    //private final static String userID = "root";
     private final static String userPW = "1234";
 
     public static void main(String[] args) {
@@ -92,7 +93,7 @@ public class Main {
         System.out.println("로그인을 해주세요\n\n");
 
 
-        while(!userID.equals(inputID) || !userPW.equals(inputPW)) {
+        while(!userPW.equals(inputPW) || !(0 < Integer.parseInt(inputID) && Integer.parseInt(inputID) <= 1000)) {
 
             System.out.print("아이디 : ");
 
@@ -102,7 +103,7 @@ public class Main {
 
             inputPW = sc.nextLine();
 
-            if(userID.equals(inputID) && userPW.equals(inputPW)) {
+            if(userPW.equals(inputPW) && 0 < Integer.parseInt(inputID) && Integer.parseInt(inputID) <= 1000) {
 
             }
             else {
@@ -112,8 +113,9 @@ public class Main {
 
         }
 
+        @SuppressWarnings("unused")
         List<String> userPropensityList;
-
+        HashMap<Integer, Book> bookHashMap = new ReadFile("BookList.csv", "euc-kr", "book").getBookHashMap();
 
         while(true) {
 
@@ -123,10 +125,8 @@ public class Main {
 
                 case 1:
                     //사용자 성향 분석
-                    //new UserPropensityAnalysis
-                    new UserPropensityAnalysis(inputID);
-
-
+                    //new UserPreferenceAnalysis
+                    new UserPreferenceAnalysis(inputID, bookHashMap);
                     break;
 
                 case 2:
@@ -138,12 +138,15 @@ public class Main {
 
                 case 3:
                     try {
-                        BookRecommender b = new BookRecommender(1);
+                        new BookRecommender(1, 10);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (TasteException e) {
                         e.printStackTrace();
                     }
+                    //추천 알고리즘
+                    //new Algorithm
+                    break;
 
                 case 4:
                     //시스템 종료
