@@ -1,8 +1,6 @@
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CheckInOutRecord {
 
@@ -17,22 +15,22 @@ public class CheckInOutRecord {
         List<String> checkInRecords = new ArrayList<String>();
         List<String> bookTitle = new ArrayList<String>();
 
-        String path = CheckInOutRecord.class.getResource("").getPath();
+       // String path = CheckInOutRecord.class.getResource("").getPath();
 
-        List<List<String>> records = new Read(path + "BookList_sample_"+inputID+".csv", "euc-kr").getRecords();
+        List<List<String>> checkoutList = new ReadFile("BookList_sample_"+inputID+".csv", "euc-kr", "checkout").getChechOutList();
 
-        for(int i=1; i<records.size(); i++) {
+        for(int i=1; i<checkoutList.size(); i++) {
 
-            bookTitle.add(records.get(i).get(1)); // 책 제목 추가
-            checkOutRecords.add(records.get(i).get(6)); //  대출 기록 추가
-            checkInRecords.add(records.get(i).get(7)); //  반납 기록 추가
+            bookTitle.add(checkoutList.get(i).get(1)); // 책 제목 추가
+            checkOutRecords.add(checkoutList.get(i).get(6)); //  대출 기록 추가
+            checkInRecords.add(checkoutList.get(i).get(7)); //  반납 기록 추가
 
         }
 
 
         System.out.println("책 제목\t대출 날짜\t반납 날짜");
 
-        for (int i=0; i < records.size()-1; i++) {
+        for (int i=0; i < checkoutList.size()-1; i++) {
 
             //System.out.println("책 제목 : " + bookTitle.get(i) + " / " + "대출 날짜 : " + checkOutRecords.get(i) + " / " + " 반납 날짜 : " + checkInRecords.get(i));
             String fixedStr = "";

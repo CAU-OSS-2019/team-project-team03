@@ -41,9 +41,9 @@ public class CreateCheckingOutDataset {
                 pStmt.setString(1, category[categoryIndex]);
                 ResultSet rset = pStmt.executeQuery();
 
-                ArrayList<BookData> bookList = new ArrayList<BookData>();
+                ArrayList<Book> bookList = new ArrayList<Book>();
                 while (rset.next()) {
-                    bookList.add(new BookData(Integer.parseInt(rset.getString("id")), rset.getString("title"),
+                    bookList.add(new Book(Integer.parseInt(rset.getString("id")), rset.getString("title"),
                             rset.getString("author"),rset.getString("publisher"),
                             rset.getString("category"),rset.getString("date"),Integer.parseInt(rset.getString("ranking"))));
                 }
@@ -63,9 +63,9 @@ public class CreateCheckingOutDataset {
                             pStmt.setString(1, category[categoryIndex]);
                             rset = pStmt.executeQuery();
 
-                            bookList = new ArrayList<BookData>();
+                            bookList = new ArrayList<Book>();
                             while (rset.next()) {
-                                bookList.add(new BookData(Integer.parseInt(rset.getString("id")), rset.getString("title"),
+                                bookList.add(new Book(Integer.parseInt(rset.getString("id")), rset.getString("title"),
                                         rset.getString("author"), rset.getString("publisher"),
                                         rset.getString("category"), rset.getString("date"), Integer.parseInt(rset.getString("ranking"))));
                             }
