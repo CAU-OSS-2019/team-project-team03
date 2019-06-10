@@ -43,7 +43,7 @@ public class CreateCheckingOutDataset {
 
                 ArrayList<Book> bookList = new ArrayList<Book>();
                 while (rset.next()) {
-                    bookList.add(new Book(Integer.parseInt(rset.getString("id")), rset.getString("title"),
+                    bookList.add(new Book(Long.parseLong(rset.getString("id")), rset.getString("title"),
                             rset.getString("author"),rset.getString("publisher"),
                             rset.getString("category"),rset.getString("date"),Integer.parseInt(rset.getString("ranking"))));
                 }
@@ -65,7 +65,7 @@ public class CreateCheckingOutDataset {
 
                             bookList = new ArrayList<Book>();
                             while (rset.next()) {
-                                bookList.add(new Book(Integer.parseInt(rset.getString("id")), rset.getString("title"),
+                                bookList.add(new Book(Long.parseLong(rset.getString("id")), rset.getString("title"),
                                         rset.getString("author"), rset.getString("publisher"),
                                         rset.getString("category"), rset.getString("date"), Integer.parseInt(rset.getString("ranking"))));
                             }

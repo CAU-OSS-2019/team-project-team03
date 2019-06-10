@@ -10,7 +10,7 @@ import java.util.List;
 public class ReadFile {
 
     private List<List<String>> checkoutList;
-    private HashMap<Integer,Book> bookHashMap;
+    private HashMap<Long,Book> bookHashMap;
 
     public ReadFile() {
         super();
@@ -30,7 +30,7 @@ public class ReadFile {
     }
 
     private void readBookFile(String path, String encoding){
-        bookHashMap = new HashMap<Integer, Book>();
+        bookHashMap = new HashMap<Long, Book>();
         BufferedReader br = null;
 
         try {
@@ -39,10 +39,9 @@ public class ReadFile {
 
             String line;
 
-            int bookId = 1;
             while((line = br.readLine()) != null) {
-                bookHashMap.put(bookId, new Book(line));
-                bookId++;
+                Book book = new Book(line);
+                bookHashMap.put(book.getBookId(), book);
             }
 
         } catch(Exception e) {
@@ -80,7 +79,7 @@ public class ReadFile {
         return this.checkoutList;
     }
 
-    public HashMap<Integer,Book> getBookHashMap(){return this.bookHashMap; }
+    public HashMap<Long,Book> getBookHashMap(){return this.bookHashMap; }
     public void setRecords(List<List<String>> checkoutList) {
         this.checkoutList = checkoutList;
     }

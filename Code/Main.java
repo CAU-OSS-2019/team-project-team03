@@ -1,5 +1,8 @@
 import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
+import org.apache.mahout.cf.taste.model.DataModel;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +13,7 @@ public class Main {
     //private final static String userID = "root";
     private final static String userPW = "1234";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, TasteException {
 
         System.out.println(
                 "                                                                                                .   \r\n" +
@@ -115,7 +118,9 @@ public class Main {
 
         @SuppressWarnings("unused")
         List<String> userPropensityList;
-        HashMap<Integer, Book> bookHashMap = new ReadFile("BookList.csv", "euc-kr", "book").getBookHashMap();
+        HashMap<Long, Book> bookHashMap = new ReadFile("BookList.csv", "euc-kr", "book").getBookHashMap();
+
+        DataModel model = new FileDataModel(new File("resultData_ver4.csv"));
 
         while(true) {
 
@@ -126,19 +131,19 @@ public class Main {
                 case 1:
                     //사용자 성향 분석
                     //new UserPreferenceAnalysis
-                    new UserPreferenceAnalysis(inputID, bookHashMap);
+                    new UserPreferenceAnalysis(inputID, bookHashMap, model);
                     break;
 
                 case 2:
 
-                    new CheckInOutRecord(inputID);
+                    new CheckInOutRecord(inputID, bookHashMap, model);
                     //사용자 대출 이력, 반납 이력 출력
                     //new CheckInOutnRecord
                     break;
 
                 case 3:
                     try {
-                        new BookRecommender(1, 10);
+                        new BookRecommender(model,bookHashMap, inputID, 10);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (TasteException e) {

@@ -1,6 +1,6 @@
 public class Book {
 
-    private int bookId;
+    private Long bookId;
     private String bookTitle;
     private String bookAuthor;
     private String bookPublisher;
@@ -15,7 +15,7 @@ public class Book {
     public Book(String line){
         String[] temp = line.split(",");
 
-        this.bookId = Integer.parseInt(temp[0]);
+        this.bookId = Long.parseLong((temp[0]));
         this.bookTitle = temp[1];
         this.bookAuthor = temp[2];
         this.bookPublisher = temp[3];
@@ -25,7 +25,7 @@ public class Book {
     }
 
 
-    public Book(int bookId, String bookTitle, String bookAuthor, String bookPublisher, String bookCategory, String bookPublishDate, int rank) {
+    public Book(Long bookId, String bookTitle, String bookAuthor, String bookPublisher, String bookCategory, String bookPublishDate, int rank) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.bookAuthor = bookAuthor;
@@ -42,10 +42,10 @@ public class Book {
     public void setBookCategory(String bookCategory) {
         this.bookCategory = bookCategory;
     }
-    public int getBookId() {
+    public Long getBookId() {
         return this.bookId;
     }
-    public void setBookId(int bookId) {
+    public void setBookId(Long bookId) {
         this.bookId = bookId;
     }
     public String getBookTitle() {
