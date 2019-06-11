@@ -1,16 +1,22 @@
-import org.apache.mahout.cf.taste.common.TasteException;
+package com.hansol.OSSTeamProject;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import org.apache.mahout.cf.taste.common.TasteException;
+import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
+import org.apache.mahout.cf.taste.model.DataModel;
 
 public class Main {
 
     //private final static String userID = "root";
     private final static String userPW = "1234";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, TasteException {
 
         System.out.println(
                 "                                                                                                .   \r\n" +
@@ -90,16 +96,15 @@ public class Main {
 
         System.out.println("Recommender in Library");
 
-        System.out.println("·Î±×ÀÎÀ» ÇØÁÖ¼¼¿ä\n\n");
-
+        System.out.println("ë¡œê·¸ì¸ì„ í•´ì£¼ì„¸ìš”\n\n");
 
         while(!userPW.equals(inputPW) || !(0 < Integer.parseInt(inputID) && Integer.parseInt(inputID) <= 1000)) {
 
-            System.out.print("¾ÆÀÌµğ : ");
+            System.out.print("ì•„ì´ë”” : ");
 
             inputID = sc.nextLine();
 
-            System.out.print("ºñ¹Ğ¹øÈ£ : ");
+            System.out.print("ë¹„ë°€ë²ˆí˜¸ : ");
 
             inputPW = sc.nextLine();
 
@@ -107,15 +112,20 @@ public class Main {
 
             }
             else {
-                //·Î±×ÀÎ ½ÇÆĞ
-                System.out.println("¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
+            	//ë¡œê·¸ì¸ ì‹¤íŒ¨
+                System.out.println("ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.");
             }
 
         }
 
         @SuppressWarnings("unused")
         List<String> userPropensityList;
-        HashMap<Integer, Book> bookHashMap = new ReadFile("BookList.csv", "euc-kr", "book").getBookHashMap();
+        
+        String path = Main.class.getResource("").getPath();
+        
+        HashMap<Long, Book> bookHashMap = new ReadFile(path+"BookList.csv", "euc-kr", "book").getBookHashMap();
+        
+        DataModel model = new FileDataModel(new File(path+"resultData_ver5.csv"));
 
         while(true) {
 
@@ -124,33 +134,34 @@ public class Main {
             switch (menu.getMenuInput()) {
 
                 case 1:
-                    //»ç¿ëÀÚ ¼ºÇâ ºĞ¼®
+                	//ì‚¬ìš©ì ì„±í–¥ ë¶„ì„
                     //new UserPreferenceAnalysis
-                    new UserPreferenceAnalysis(inputID, bookHashMap);
+                    UserPreferenceAnalysis upa = new UserPreferenceAnalysis(Long.parseLong(inputID), bookHashMap, model);
+                    upa.printUserData();
                     break;
 
                 case 2:
 
-                    new CheckInOutRecord(inputID);
-                    //»ç¿ëÀÚ ´ëÃâ ÀÌ·Â, ¹İ³³ ÀÌ·Â Ãâ·Â
+                    new CheckInOutRecord(inputID, bookHashMap, model);
+                    //ì‚¬ìš©ì ëŒ€ì¶œ ì´ë ¥, ë°˜ë‚© ì´ë ¥ ì¶œë ¥
                     //new CheckInOutnRecord
                     break;
 
                 case 3:
                     try {
-                        new BookRecommender(1, 10);
+                        new BookRecommender(model,bookHashMap, Long.parseLong(inputID), 10);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (TasteException e) {
                         e.printStackTrace();
                     }
-                    //ÃßÃµ ¾Ë°í¸®Áò
+                    //ì¶”ì²œ ì•Œê³ ë¦¬ì¦˜
                     //new Algorithm
                     break;
 
                 case 4:
-                    //½Ã½ºÅÛ Á¾·á
-                    System.out.println("¾îÇÃ¸®ÄÉÀÌ¼Ç Á¾·á");
+                	//ì‹œìŠ¤í…œ ì¢…ë£Œ
+                    System.out.println("ì–´í”Œë¦¬ì¼€ì´ì…˜ ì¢…ë£Œ");
 
                     try {
 
@@ -165,7 +176,7 @@ public class Main {
 
                 default:
 
-                    System.out.println("* ¿Ã¹Ù¸¥ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
+                    System.out.println("* ì˜¬ë°”ë¥¸ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 
                     break;
             }
