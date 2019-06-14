@@ -22,17 +22,17 @@ public class CheckInOutRecord {
         this.model = model;
         this.bookHashMap = bookHashMap;
 
-        System.out.println("Ã¥ Á¦¸ñ\tÀÛ°¡\tÃâÆÇ»ç\tÀå¸£");
+        System.out.println("ì±… ì œëª©\t\t\t     ì‘ê°€\t              ì¶œíŒì‚¬\t        ì¥ë¥´");
 
 
         for(Long bookId : model.getItemIDsFromUser(userId) ) {
-            System.out.println(bookHashMap.get(bookId).getBookTitle() + "\t" + bookHashMap.get(bookId).getBookAuthor() + "\t" +
-                    bookHashMap.get(bookId).getBookPublisher() + "\t" +bookHashMap.get(bookId).getBookCategory());
+            System.out.println(padString(bookHashMap.get(bookId).getBookTitle(),48)+padString(bookHashMap.get(bookId).getBookAuthor(),16)+padString(bookHashMap.get(bookId).getBookPublisher(),16)+padString(bookHashMap.get(bookId).getBookCategory(),0));
+
         }
 
         System.out.println("======================\n\n");
 
-        System.out.println("¸Ş´º·Î µ¹¾Æ°¡·Á¸é ¾Æ¹«Å°³ª ´©¸£¼¼¿ä.");
+        System.out.println("ë©”ë‰´ë¡œ ëŒì•„ê°€ë ¤ë©´ ì•„ë¬´í‚¤ë‚˜ ëˆ„ë¥´ì„¸ìš”.");
 
         try {
 
@@ -45,6 +45,12 @@ public class CheckInOutRecord {
             e.printStackTrace();
 
         }
+    }
+    
+    public static String padString(String str, int leng) {
+        for (int i = str.length(); i <= leng; i++)
+            str += " ";
+        return str;
     }
 
 }
