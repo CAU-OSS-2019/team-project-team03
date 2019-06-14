@@ -1,4 +1,5 @@
 
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.model.DataModel;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 public class CheckInOutRecord {
 
-    private String userId;
+    private Long userId;
     private DataModel model;
     private HashMap<Long, Book> bookHashMap;
 
@@ -16,25 +17,19 @@ public class CheckInOutRecord {
         // TODO Auto-generated constructor stub
     }
 
-    public CheckInOutRecord(String userId, HashMap<Long, Book> bookHashMap, DataModel model) {
+    public CheckInOutRecord(Long userId, HashMap<Long, Book> bookHashMap, DataModel model) throws TasteException {
         this.userId = userId;
         this.model = model;
         this.bookHashMap = bookHashMap;
 
-        System.out.println("책 제목\t대출 날짜\t반납 날짜");
+        System.out.println("책 제목\t작가\t출판사\t장르");
 
-        /*
-        for (int i=0; i < checkoutList.size()-1; i++) {
 
-            //System.out.println("책 제목 : " + bookTitle.get(i) + " / " + "대출 날짜 : " + checkOutRecords.get(i) + " / " + " 반납 날짜 : " + checkInRecords.get(i));
-            String fixedStr = "";
-            fixedStr = bookTitle.get(i) + "\t\t\t\t\t\t\t\t\t\t";
-
-            //System.out.println(fixedStr+" / "+checkOutRecords.get(i) + " / " + checkInRecords.get(i));
-            System.out.printf("%1$s / %2$10s / %3$10s", bookTitle.get(i), checkOutRecords.get(i), checkInRecords.get(i)+"\n");
+        for(Long bookId : model.getItemIDsFromUser(userId) ) {
+            System.out.println(bookHashMap.get(bookId).getBookTitle() + "\t" + bookHashMap.get(bookId).getBookAuthor() + "\t" +
+                    bookHashMap.get(bookId).getBookPublisher() + "\t" +bookHashMap.get(bookId).getBookCategory());
         }
 
-*/
         System.out.println("======================\n\n");
 
         System.out.println("메뉴로 돌아가려면 아무키나 누르세요.");

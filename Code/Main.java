@@ -12,6 +12,7 @@ public class Main {
 
     //private final static String userID = "root";
     private final static String userPW = "1234";
+    private final static int numRecBooks = 10;
 
     public static void main(String[] args) throws IOException, TasteException {
 
@@ -137,14 +138,15 @@ public class Main {
 
                 case 2:
 
-                    new CheckInOutRecord(inputID, bookHashMap, model);
+                    new CheckInOutRecord(Long.parseLong(inputID), bookHashMap, model);
                     //사용자 대출 이력, 반납 이력 출력
                     //new CheckInOutnRecord
                     break;
 
                 case 3:
                     try {
-                        new BookRecommender(model,bookHashMap, Long.parseLong(inputID), 10);
+                        new BookRecommender(model,bookHashMap, Long.parseLong(inputID), numRecBooks);
+                        model = new FileDataModel(new File("resultData_ver5.csv"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (TasteException e) {
