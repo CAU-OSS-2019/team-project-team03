@@ -1,15 +1,12 @@
-package com.hansol.OSSTeamProject;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
-
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.model.DataModel;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -96,15 +93,16 @@ public class Main {
 
         System.out.println("Recommender in Library");
 
-        System.out.println("ë¡œê·¸ì¸ì„ í•´ì£¼ì„¸ìš”\n\n");
+        System.out.println("·Î±×ÀÎÀ» ÇØÁÖ¼¼¿ä\n\n");
+
 
         while(!userPW.equals(inputPW) || !(0 < Integer.parseInt(inputID) && Integer.parseInt(inputID) <= 1000)) {
 
-            System.out.print("ì•„ì´ë”” : ");
+            System.out.print("¾ÆÀÌµğ : ");
 
             inputID = sc.nextLine();
 
-            System.out.print("ë¹„ë°€ë²ˆí˜¸ : ");
+            System.out.print("ºñ¹Ğ¹øÈ£ : ");
 
             inputPW = sc.nextLine();
 
@@ -112,20 +110,17 @@ public class Main {
 
             }
             else {
-            	//ë¡œê·¸ì¸ ì‹¤íŒ¨
-                System.out.println("ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.");
+                //·Î±×ÀÎ ½ÇÆĞ
+                System.out.println("¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.");
             }
 
         }
 
         @SuppressWarnings("unused")
         List<String> userPropensityList;
-        
-        String path = Main.class.getResource("").getPath();
-        
-        HashMap<Long, Book> bookHashMap = new ReadFile(path+"BookList.csv", "euc-kr", "book").getBookHashMap();
-        
-        DataModel model = new FileDataModel(new File(path+"resultData_ver5.csv"));
+        HashMap<Long, Book> bookHashMap = new ReadFile("BookList.csv", "euc-kr", "book").getBookHashMap();
+
+        DataModel model = new FileDataModel(new File("resultData_ver5.csv"));
 
         while(true) {
 
@@ -134,7 +129,7 @@ public class Main {
             switch (menu.getMenuInput()) {
 
                 case 1:
-                	//ì‚¬ìš©ì ì„±í–¥ ë¶„ì„
+                    //»ç¿ëÀÚ ¼ºÇâ ºĞ¼®
                     //new UserPreferenceAnalysis
                     UserPreferenceAnalysis upa = new UserPreferenceAnalysis(Long.parseLong(inputID), bookHashMap, model);
                     upa.printUserData();
@@ -143,7 +138,7 @@ public class Main {
                 case 2:
 
                     new CheckInOutRecord(inputID, bookHashMap, model);
-                    //ì‚¬ìš©ì ëŒ€ì¶œ ì´ë ¥, ë°˜ë‚© ì´ë ¥ ì¶œë ¥
+                    //»ç¿ëÀÚ ´ëÃâ ÀÌ·Â, ¹İ³³ ÀÌ·Â Ãâ·Â
                     //new CheckInOutnRecord
                     break;
 
@@ -155,13 +150,13 @@ public class Main {
                     } catch (TasteException e) {
                         e.printStackTrace();
                     }
-                    //ì¶”ì²œ ì•Œê³ ë¦¬ì¦˜
+                    //ÃßÃµ ¾Ë°í¸®Áò
                     //new Algorithm
                     break;
 
                 case 4:
-                	//ì‹œìŠ¤í…œ ì¢…ë£Œ
-                    System.out.println("ì–´í”Œë¦¬ì¼€ì´ì…˜ ì¢…ë£Œ");
+                    //½Ã½ºÅÛ Á¾·á
+                    System.out.println("¾îÇÃ¸®ÄÉÀÌ¼Ç Á¾·á");
 
                     try {
 
@@ -176,7 +171,7 @@ public class Main {
 
                 default:
 
-                    System.out.println("* ì˜¬ë°”ë¥¸ ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+                    System.out.println("* ¿Ã¹Ù¸¥ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.\n");
 
                     break;
             }
