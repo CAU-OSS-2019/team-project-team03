@@ -22,12 +22,11 @@ public class CheckInOutRecord {
         this.model = model;
         this.bookHashMap = bookHashMap;
 
-        System.out.println("책 제목\t\t\t     작가\t              출판사\t        장르");
-
+        System.out.println("======================");
+        System.out.println("책 제목,작가,출판사,장르\n");
 
         for(Long bookId : model.getItemIDsFromUser(userId) ) {
-            System.out.println(padString(bookHashMap.get(bookId).getBookTitle(),48)+padString(bookHashMap.get(bookId).getBookAuthor(),16)+padString(bookHashMap.get(bookId).getBookPublisher(),16)+padString(bookHashMap.get(bookId).getBookCategory(),0));
-
+            System.out.println(bookHashMap.get(bookId).tostring());
         }
 
         System.out.println("======================\n\n");
@@ -47,10 +46,6 @@ public class CheckInOutRecord {
         }
     }
     
-    public static String padString(String str, int leng) {
-        for (int i = str.length(); i <= leng; i++)
-            str += " ";
-        return str;
-    }
+    
 
 }

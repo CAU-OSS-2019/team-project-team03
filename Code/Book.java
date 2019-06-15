@@ -82,4 +82,8 @@ public class Book {
     public String toString(){
         return bookId + "," + bookTitle + "," + bookAuthor + "," + bookPublisher + "," + bookCategory + "," + bookDate + "," + rank;
     }
+    
+    public String tostring(){        
+       return bookTitle + "," + bookAuthor + "," + bookPublisher + "," + bookCategory;
+    }
 }
