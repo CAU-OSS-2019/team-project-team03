@@ -6,7 +6,7 @@ team-project-team03 created by GitHub Classroom
 우리의 프로젝트는 도서관 이용자들 데이터를 이용하여 대출 성향을 분석하고, 이용자의 평소 성향과 비슷한 도서는 물론이고 이용자들의 대출 장려를 위해
 이용자의 평소 성향과 조금 벗어난 분야의 추천한다.
 
-# How out project dose?
+# How our project dose?
 
 * 개발환경
 Java JDK 12.0.1
